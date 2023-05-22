@@ -1,4 +1,6 @@
 import { galleryEl } from './refs';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 export function createMarkupCard({
   webformatURL,
@@ -11,7 +13,9 @@ export function createMarkupCard({
 }) {
   const markup = `
   <div class="photo-card">
+   <a class="gallery__link" href="${largeImageUR}">
   <img src="${webformatURL}" alt="${tags}" loading="lazy" width="350px" />
+  </a>
   <div class="info">
     <p class="info-item">
       <b>Likes<br>${likes}</b>
@@ -38,3 +42,8 @@ export function updateGallery(markup) {
 export function clearGallery() {
   galleryEl.innerHTML = ' ';
 }
+
+let lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
