@@ -1,49 +1,55 @@
-import { galleryEl } from './refs';
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
+import { refs } from './refs';
+import { ImagesService } from './ImagesService';
+import { lightbox } from './index';
 
-export function createMarkupCard({
-  webformatURL,
-  largeImageUR,
-  tags,
-  likes,
-  views,
-  comments,
-  downloads,
-}) {
-  const markup = `
-  <div class="photo-card">
-   <a class="gallery__link" href="${largeImageUR}">
-  <img src="${webformatURL}" alt="${tags}" loading="lazy" width="350px" />
-  </a>
+const imagesService = new ImagesService();
+
+export function createMarkup(data) {
+  return data.hits
+    .map(
+      ({
+        webformatURL,
+        largeImageURL,
+        tags,
+        likes,
+        views,
+        comments,
+        downloads,
+      }) => {
+        return `<div class="photo-card">
+       <a href="${largeImageURL}">
+  <img src="${webformatURL}" alt="${tags}" loading="lazy" /></a>
   <div class="info">
     <p class="info-item">
-      <b>Likes<br>${likes}</b>
+      <b>Likes</b>
+      ${likes}
     </p>
     <p class="info-item">
-      <b>Views<br>${views}</b>
+      <b>Views</b>
+      ${views}
     </p>
     <p class="info-item">
-      <b>Comments<br>${comments}</b>
+      <b>Comments</b>
+      ${comments}
     </p>
     <p class="info-item">
-      <b>Downloads<br>${downloads}</b>
+      <b>Downloads</b>
+      ${downloads}
     </p>
   </div>
 </div>`;
-
-  return markup;
+      }
+    )
+    .join('');
 }
 
-export function updateGallery(markup) {
-  galleryEl.insertAdjacentHTML('beforeend', markup);
+export function addMarkup(markup) {
+  refs.gallery.insertAdjacentHTML('beforeend', markup);
+  lightbox.refresh();
 }
 
-export function clearGallery() {
-  galleryEl.innerHTML = ' ';
-}
 
-let lightbox = new SimpleLightbox('.gallery a', {
-  captionsData: 'alt',
-  captionDelay: 250,
-});
+export function clearPage() {
+  imagesService.decrementPage();
+  refs.gallery.innerHTML = '';
+}

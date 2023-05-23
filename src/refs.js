@@ -1,3 +1,5 @@
-export const formEl = document.getElementById('search-form');
-export const galleryEl = document.querySelector('.gallery');
-export const buttonLoadMore = document.querySelector('.load-more');
+export const refs = {
+  form: document.querySelector('.search-form'),
+  gallery: document.querySelector('.gallery'),
+  loadMore: document.querySelector('.load-more'),
+};

@@ -12,26 +12,59 @@ body {
   line-height: 1.5;
 }
 
-.search-form {
-  background-color: paleturquoise;
-  text-align: center;
-  padding: 15px;
+img {
+  display: block;
+  max-width: 100%;
+  height: 220px;
+  object-fit: cover;
 }
 
 .gallery {
+  width: 1200px;
   display: flex;
-  gap: 15px;
-  flex-wrap: wrap
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+.photo-card {
+  width: calc((100% / 4) - 30px);
+  height: 100%;
+  margin: 5px;
+}
+
+.info-item {
+  margin: 5px;
+  font-size: 12px;
+  text-align: center;
 }
 
 .info {
   display: flex;
-  gap: 5px;
-  font-size: 15px;
-  text-align: center;
-  justify-content: space-around
 }
 
-button.hidden {
-  display: none;
+
+input {
+  height: 40px;
+  border: none;
+  width: 400px;
+  padding-left: 10px;
 }
+
+.search-form {
+  display: flex;
+  background: yellowgreen;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  justify-content: center;
+}
+
+button {
+  height: 40px;
+  width: 80px;
+  background: yellow;
+  right: 0;
+  border: none;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
