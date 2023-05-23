@@ -13,7 +13,7 @@ import './css/styles.css';
 
 const imagesService = new ImagesService();
 
-const handleSubmit = async e => {
+const onSubmitForm = async e => {
   e.preventDefault();
 
   clearPage();
@@ -60,7 +60,7 @@ const handleSubmit = async e => {
   }
 };
 
-refs.form.addEventListener('submit', handleSubmit);
+refs.form.addEventListener('submit', onSubmitForm);
 
 const options = {
   root: null,
